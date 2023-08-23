@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-export default function CardDemo() {
+const CardDemo = () => {
   const state = useContext(SectionContext);
 
   return (
@@ -28,7 +28,7 @@ export default function CardDemo() {
           className="w-full"
         />
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex justify-between">
         <p>Card Footer</p>
         <Button onClick={increament}>Deploy</Button>
       </CardFooter>
@@ -38,4 +38,6 @@ export default function CardDemo() {
     console.log("inside CardDemo");
     console.log(state);
   }
-}
+};
+
+export default CardDemo;

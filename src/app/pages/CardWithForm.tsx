@@ -12,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SetStateAction, createContext, useState } from "react";
+import CardDemo from "./CardDemo";
 const SectionContext = createContext("");
 
 export default function CardWithForm() {
@@ -60,15 +61,13 @@ export default function CardWithForm() {
           <Button onClick={increament}>Deploy</Button>
         </CardFooter>
       </Card>
+      <CardDemo />
     </SectionContext.Provider>
   );
   function increament() {
     console.log("inside CardWithForm");
-
-    setstate(state);
-
+    // setstate(state);
     console.log(state);
-    console.log(SectionContext.displayName?.length);
   }
 }
 export { SectionContext };
