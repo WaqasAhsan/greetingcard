@@ -13,13 +13,13 @@ import {
 import { Button } from "@/components/ui/button";
 
 const CardDemo = () => {
-  const state = useContext(SectionContext);
+  const myData = useContext(SectionContext);
 
   return (
     <Card className="lg:max-w-md w-full mt-10">
       <CardHeader>
-        <CardTitle>Card Title : {state}</CardTitle>
-        <CardDescription>Card Description</CardDescription>
+        <CardTitle>Hi {myData.name}</CardTitle>
+        <CardDescription>{myData.description}</CardDescription>
       </CardHeader>
       <CardContent>
         <img
@@ -28,16 +28,18 @@ const CardDemo = () => {
           className="w-full"
         />
       </CardContent>
-      <CardFooter className="flex justify-between">
-        <p>Card Footer</p>
-        <Button onClick={increament}>Deploy</Button>
+      <CardFooter className="flex flex-col justify-end">
+        <p>Yours truly</p>
+        <p>{myData.sender}</p>
+
+        {/* <Button onClick={increament}>Deploy</Button> */}
       </CardFooter>
     </Card>
   );
-  function increament() {
-    console.log("inside CardDemo");
-    console.log(state);
-  }
+  // function increament() {
+  //   console.log("inside CardDemo");
+  //   console.log(state);
+  // }
 };
 
 export default CardDemo;

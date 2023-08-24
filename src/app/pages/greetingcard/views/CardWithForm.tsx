@@ -13,18 +13,53 @@ import {
 } from "@/components/ui/card";
 import { SetStateAction, createContext, useState } from "react";
 import CardDemo from "./CardDemo";
-const SectionContext = createContext("");
+// const SectionContext = createContext("");
+// const DescriptionContext = createContext("");
+
+const myData = {
+  name: "",
+  description: "",
+  sender: "",
+};
+
+const SectionContext = createContext<{
+  name: string;
+  description: string;
+  sender: string;
+}>(myData);
 
 export default function CardWithForm() {
   const [state, setstate] = useState("");
-  const handleChange = (event: {
+  const [description, setDescription] = useState("");
+  const [sender, setSender] = useState("");
+
+  const handleNameChange = (event: {
     target: { value: SetStateAction<string> };
   }) => {
     setstate(event.target.value);
     console.log("Waqas: " + state);
   };
+
+  const handleDescriptionChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setDescription(event.target.value);
+  };
+
+  const handleSenderChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setSender(event.target.value);
+  };
+
+  const data = {
+    name: state,
+    description: description,
+    sender: sender,
+  };
+
   return (
-    <SectionContext.Provider value={state}>
+    <SectionContext.Provider value={data}>
       <Card className="w-[350px]">
         <CardHeader>
           <CardTitle>Create Greeting Card</CardTitle>
@@ -42,15 +77,31 @@ export default function CardWithForm() {
                   type="text"
                   id="state"
                   name="state"
-                  onChange={handleChange}
+                  onChange={handleNameChange}
                   value={state}
                 />
               </div>
               <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name1">Description</Label>
+                <Label htmlFor="description">Description</Label>
                 <Input
-                  id="name1"
+                  id="description"
                   placeholder="Please enter description of your card"
+                  type="text"
+                  name="description"
+                  onChange={handleDescriptionChange}
+                  value={description}
+                />
+              </div>
+
+              <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="sender">Sender</Label>
+                <Input
+                  id="sender"
+                  placeholder="Please enter sender's name"
+                  type="text"
+                  name="sender"
+                  onChange={handleSenderChange}
+                  value={sender}
                 />
               </div>
             </div>
