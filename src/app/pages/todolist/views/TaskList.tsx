@@ -3,7 +3,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Key, useState } from "react";
 
-export default function TaskList({ tasks, onChangeTask, onDeleteTask }) {
+export default function TaskList({
+  tasks,
+  onChangeTask,
+  onDeleteTask,
+}: {
+  tasks: any;
+  onChangeTask: any;
+  onDeleteTask: any;
+}) {
   return (
     <ul>
       {tasks.map((task: { id: Key | null | undefined }) => (
@@ -15,7 +23,15 @@ export default function TaskList({ tasks, onChangeTask, onDeleteTask }) {
   );
 }
 
-function Task({ task, onChange, onDelete }) {
+function Task({
+  task,
+  onChange,
+  onDelete,
+}: {
+  task: any;
+  onChange: any;
+  onDelete: any;
+}) {
   const [isEditing, setIsEditing] = useState(false);
   let taskContent;
   if (isEditing) {

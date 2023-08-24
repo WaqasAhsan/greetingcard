@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SetStateAction, useState } from "react";
 
-export default function AddTask({ onAddTask }) {
+export default function AddTask({ onAddTask }: { onAddTask: any }) {
   const [text, setText] = useState("");
   return (
     <div className="flex gap-6 flex-grow">
