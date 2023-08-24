@@ -18,21 +18,20 @@ const CardDemo = () => {
   return (
     <Card className="lg:max-w-md w-full mt-10">
       <CardHeader>
-        <CardTitle>Hi {myData.name}</CardTitle>
+        <CardTitle>Hi {myData.name},</CardTitle>
         <CardDescription>{myData.description}</CardDescription>
       </CardHeader>
       <CardContent>
         <img
-          src="https://cdn.pixabay.com/photo/2023/03/16/16/49/watercolor-7857103_640.png"
+          // src="https://cdn.pixabay.com/photo/2023/03/16/16/49/watercolor-7857103_640.png"
+          src="https://www.througheternity.com/upload/CONF83/20220323/cinque_terre_header_1_-tSa-1200X630.png"
           alt="Card Image"
           className="w-full"
         />
       </CardContent>
-      <CardFooter className="flex flex-col justify-end">
-        <p>Yours truly</p>
+      <CardFooter className="flex flex-col items-end">
+        <p>Yours truly,</p>
         <p>{myData.sender}</p>
-
-        {/* <Button onClick={increament}>Deploy</Button> */}
       </CardFooter>
     </Card>
   );
