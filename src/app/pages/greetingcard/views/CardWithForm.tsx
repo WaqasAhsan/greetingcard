@@ -37,7 +37,7 @@ export default function CardWithForm() {
     target: { value: SetStateAction<string> };
   }) => {
     setstate(event.target.value);
-    console.log("Waqas: " + state);
+    // console.log("Waqas: " + state);
   };
 
   const handleDescriptionChange = (event: {
@@ -73,7 +73,7 @@ export default function CardWithForm() {
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name1">Name</Label>
                 <Input
-                  placeholder="Please enter your name"
+                  placeholder="Please enter receiver's name"
                   type="text"
                   id="state"
                   name="state"
