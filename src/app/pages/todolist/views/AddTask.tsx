@@ -12,7 +12,7 @@ export default function AddTask({ onAddTask }: { onAddTask: any }) {
         value={text}
         onChange={newFunction_1()}
       />
-      <Button variant="outline" onClick={newFunction()}>
+      <Button variant="default" className="bg-blue-900" onClick={newFunction()}>
         Add
       </Button>
     </div>

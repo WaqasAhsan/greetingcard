@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Key, useState } from "react";
 
 export default function TaskList({
@@ -56,7 +55,7 @@ function Task({
     taskContent = (
       <div className="flex items-center justify-stretch w-full gap-x-4">
         <h4 className="scroll-m-20 text-xl tracking-tight w-96">{task.text}</h4>
-        <Button variant="outline" onClick={newFunction(true)}>
+        <Button variant="default" onClick={newFunction(true)}>
           Edit
         </Button>
       </div>
