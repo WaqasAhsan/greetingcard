@@ -1,6 +1,8 @@
 import { useReducer } from "react";
 import AddTask from "./AddTask";
 import TaskList from "./TaskList";
+import { initialTasks } from "../data/data";
+import { Button } from "@/components/ui/button";
 
 export default function TaskApp() {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
@@ -8,7 +10,7 @@ export default function TaskApp() {
   function handleAddTask(text: any) {
     dispatch({
       type: "added",
-      id: nextId++,
+      id: initialTasks.length++,
       text: text,
       task: {
         id: undefined,
@@ -36,12 +38,27 @@ export default function TaskApp() {
     });
   }
 
+  async function handleReloadTask(taskId: any) {
+    const tasks = await getTasks();
+    console.log(tasks);
+    dispatch({
+      type: "reload",
+      id: taskId,
+      text: undefined,
+      task: {
+        id: undefined,
+      },
+    });
+  }
+
   return (
     <div className="flex flex-col gap-y-6 justify-center items-center mt-10 w-full">
       <h1 className="scroll-m-20 text-3xl font-bold tracking-tight lg:text-3xl">
         TODO List App
       </h1>
-
+      <Button variant="default" onClick={handleReloadTask}>
+        Reload
+      </Button>
       <AddTask onAddTask={handleAddTask} />
       <TaskList
         tasks={tasks}
@@ -79,6 +96,15 @@ function tasksReducer(
     case "deleted": {
       return tasks.filter((t: { id: any }) => t.id !== action.id);
     }
+    case "reload": {
+      return tasks.map((t: { id: any }) => {
+        if (t.id === action.task.id) {
+          return action.task;
+        } else {
+          return t;
+        }
+      });
+    }
     default: {
       throw Error("Unknown action: " + action.type);
     }
@@ -86,8 +112,23 @@ function tasksReducer(
 }
 
 let nextId = 3;
-const initialTasks = [
-  { id: 0, text: "Wash Car", done: true },
-  { id: 1, text: "Go for running at 6pm", done: false },
-  { id: 2, text: "Practice nextjs for 4 hr", done: false },
-];
+// const initialTasks = [
+//   { id: 0, text: "Wash Car", done: true },
+//   { id: 1, text: "Go for running at 6pm", done: false },
+//   { id: 2, text: "Practice nextjs for 4 hr", done: false },
+// ];
+
+async function getTasks() {
+  const res = await fetch(
+    `http://localhost:3000/pages/todolist/api/status/`
+    // `https://cdn.contentful.com/spaces/1rsiyjyk6lfu/entries?access_token=vimspEehhStJ23AVv-hNTFCA4Hk-M60adw7OngouoMc&content_type=testproject`
+  );
+
+  // Recommendation: handle errors
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
